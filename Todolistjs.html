@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to do list</title>
+
+    >
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: black;
+}
+.box{
+    position: relative;
+    width: 450px;
+    height: 550px;
+    border-radius: 30px;
+    background: rgb(239, 236, 236);
+    padding: 30px 50px;
+    box-shadow: 25px 25px 75px rgb(91, 91, 239),
+    10px 10px 70px rgb(127, 127, 243),
+    inset 5px 5px 10px rgb(72, 72, 242),
+    inset 5px 5px 20px blueviolet,
+    inset -5x -5x -15px rgb(95, 95, 241)
+
+
+}
+h2{
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.75rem;
+    text-align: center;
+    color: blueviolet;
+}
+
+#inputBx{
+    position: relative;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 15px 20px;
+    border-radius: 30;
+    font-size: 1em;
+    box-shadow: 5px 5px 7px blueviolet;
+
+}
+
+.box li{
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: blueviolet;
+    margin: 15px 0;
+    padding: 10px 10px 10px 45px;
+    min-height: 45px;
+    cursor: pointer;
+    border-radius: 22.5px;
+    box-shadow: 5px 5px 7px blue;
+    color: white;
+}
+
+.box li.done{
+    background: brown;
+}
+
+.box li i{
+    position: absolute;
+    right: -40px;
+    width: 30px;
+    height: 30px;
+    background: yellowgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.box li i::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: black;
+    transform: rotate(45deg);
+}
+
+.box li i::after{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background: black;
+    transform: rotate(-45deg);
+}
+
+.box li::before{
+    content: '';
+    position: absolute;
+    left: 8px;
+    width: 30px;
+    height: 30px;
+    background-color: aqua;
+    border-radius: 50%;
+}
+
+.box li.done::after{
+    content: '';
+    position: absolute;
+    left: 16px;
+    width: 12px;
+    height: 6px;
+    border-left: 2px solid rgb(203, 47, 47);
+    border-bottom: 2px solid rgb(17, 15, 15);
+    transform: rotate(315deg);
+
+
+}
+
+/* #list{
+    position: relative;
+    margin-top: 20px;
+    height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+} */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+
+            <h2>To do list in javascript</h2>
+            <input type="text" placeholder="write here..." id="inputBx">
+
+            <ul id="list"></ul>
+
+        </div>
+
+    </div>
+
+    <script>
+        let inputBx = document.getElementById('inputBx');
+        let list = document.getElementById('list')
+
+        inputBx.addEventListener('keyup',function(event){
+            if(event.key == "Enter"){
+                addItem(this.value)
+                this.value=""
+            }
+
+        })
+
+        let addItem= (inputBx)=>{
+            let listItem = document.createElement("li");
+            listItem.innerHTML = `${inputBx}<i></i>`;
+
+
+                listItem.addEventListener("click",function(){
+                    this.classList.toggle("done")
+                })
+
+                listItem.querySelector("i").addEventListener('click',function(){
+
+                    listItem.remove()
+
+                })
+
+                
+
+                list.appendChild(listItem);
+
+        }
+    </script>
+</body>
+</html>
